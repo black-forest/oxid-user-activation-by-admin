@@ -48,7 +48,7 @@ class RegisterUser extends RegisterUser_parent
             $updateUser->oxuser__oxactive = new oxField(0);
             $updateUser->save();
 
-            $redirect = '';
+            $redirect = 'home';
         }
 
         return $redirect;
