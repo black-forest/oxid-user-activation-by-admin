@@ -19,6 +19,8 @@ class RegisterUser extends RegisterUser_parent
     {
         if ($this->getConfig()->getRequestParameter('fnc') === 'registeruser') {
             $this->getConfig()->setConfigParam('blPsLoginEnabled', true);
+
+            $this->sendEmailToAdministrator();
         }
 
         return parent::isEnabledPrivateSales();
@@ -52,5 +54,26 @@ class RegisterUser extends RegisterUser_parent
         }
 
         return $redirect;
+    }
+
+    /**
+     * Send email to administrator for activate the new user.
+     */
+    protected function sendEmailToAdministrator()
+    {
+        $email = oxNew('oxemail');
+
+        $to = $this->getConfig()->getActiveShop()->getFieldData('oxshops__oxinfoemail');
+
+        $subject = 'Neuer Shop Benutzer angemeledet der aktiviert werden muss.';
+
+        $body = 'Hallo Admin' . PHP_EOL .
+                 PHP_EOL .
+                'es hat sich ein neuer Benutzer mit der Email ' . $this->getConfig()->getRequestParameter('lgn_usr') . ' angemeledet der aktviert werden muss.' . PHP_EOL .
+                PHP_EOL .
+                PHP_EOL .
+                $this->getConfig()->getActiveShop()->getFieldData('oxshops__oxname');
+
+        $email->sendEmail($to, $subject, $body);
     }
 }
