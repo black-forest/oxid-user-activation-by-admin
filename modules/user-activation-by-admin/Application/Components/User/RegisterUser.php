@@ -65,11 +65,11 @@ class RegisterUser extends RegisterUser_parent
 
         $to = $this->getConfig()->getActiveShop()->getFieldData('oxshops__oxinfoemail');
 
-        $subject = 'Neuer Shop Benutzer angemeledet der aktiviert werden muss.';
+        $subject = 'Neuer Shop Benutzer angemeldet der aktiviert werden muss.';
 
         $body = 'Hallo Admin' . PHP_EOL .
                  PHP_EOL .
-                'es hat sich ein neuer Benutzer mit der Email ' . $this->getConfig()->getRequestParameter('lgn_usr') . ' angemeledet der aktviert werden muss.' . PHP_EOL .
+                'es hat sich ein neuer Benutzer mit der Email ' . $this->getConfig()->getRequestParameter('lgn_usr') . ' angemeldet der aktviert werden muss.' . PHP_EOL .
                 PHP_EOL .
                 PHP_EOL .
                 $this->getConfig()->getActiveShop()->getFieldData('oxshops__oxname');
